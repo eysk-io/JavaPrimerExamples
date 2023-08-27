@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Primer {
     public static class Lambda {
@@ -64,13 +62,58 @@ public class Primer {
             List<Integer> myList = new ArrayList<>(List.of(3, 5, 1, 4, 7, 194, 4));
             System.out.println("My unsorted list: " + myList);
 
+            // sorted
             List<Integer> newList =
                     myList.stream()
                             .sorted(Integer::compareTo)
                             .collect(Collectors.toList());
             System.out.println("Sorted via stream: " + newList);
-
             System.out.println("My still unsorted list: " + myList);
+
+            // filter
+            newList = newList.stream()
+                            .filter(i -> i >= 100)
+                            .collect(Collectors.toList());
+            System.out.println("My new filtered list: " + newList);
+
+            // map
+            List<String> myStrList = myList.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.toList());
+            System.out.println("My new list of strings " + myStrList);
+
+            // findFirst
+            int firstOfStream = myList.stream()
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("No element"));
+            System.out.println("First item in my list: " + firstOfStream);
+
+            // combined
+            String myFinalForm = myList.stream()
+                    .filter(i -> i >= 100)
+                    .sorted(Integer::compareTo)
+                    .map(String::valueOf)
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("No element"));
+            System.out.println("my final form: " + myFinalForm);
+
+            List<Integer> listA = new ArrayList<>(List.of(3, 5, 1, 4, 7, 194, 4));
+            List<Integer> listB = listA.stream().map(i -> i + 2).toList();
+
+            // list intersect and convert to set
+            Set<Integer> setA = Stream.concat(listA.stream(), listB.stream())
+                    .collect(Collectors.toSet());
+            System.out.println("setA: " + setA);
+
+            // convert from map
+            Map<String, String> map = Map.of(
+                    "a", "1",
+                    "b", "2",
+                    "c", "3",
+                    "d", "4"
+            );
+            List<String> allMapKeys = map.keySet().stream().toList();
+            System.out.println("allMapKeys: " + allMapKeys);
         }
     }
 }
