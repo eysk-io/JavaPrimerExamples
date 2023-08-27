@@ -85,7 +85,7 @@ public class Primer {
             // findFirst
             int firstOfStream = myList.stream()
                     .findFirst()
-                    .orElseThrow(() -> new RuntimeException("No element"));
+                    .orElseThrow(NoSuchElementException::new);
             System.out.println("First item in my list: " + firstOfStream);
 
             // combined
@@ -94,7 +94,7 @@ public class Primer {
                     .sorted(Integer::compareTo)
                     .map(String::valueOf)
                     .findFirst()
-                    .orElseThrow(() -> new RuntimeException("No element"));
+                    .orElseThrow(NoSuchElementException::new);
             System.out.println("my final form: " + myFinalForm);
 
             List<Integer> listA = new ArrayList<>(List.of(3, 5, 1, 4, 7, 194, 4));
