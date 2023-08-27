@@ -57,6 +57,10 @@ public class Primer {
 
     public static class Streams {
         public static void main(String[] args) {
+            new Streams().runExamples();
+        }
+
+        public void runExamples() {
             List<Integer> myList = new ArrayList<>(List.of(3, 5, 1, 4, 7, 194, 4));
             System.out.println("My unsorted list: " + myList);
 
