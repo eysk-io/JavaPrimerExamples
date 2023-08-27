@@ -114,6 +114,12 @@ public class Primer {
             );
             List<String> allMapKeys = map.keySet().stream().toList();
             System.out.println("allMapKeys: " + allMapKeys);
+
+            // parallel streams
+            List<String> listAStr = listA.parallelStream()
+                    .map(String::valueOf)
+                    .toList();
+            System.out.println("parallel stream: " + listAStr);
         }
     }
 }
