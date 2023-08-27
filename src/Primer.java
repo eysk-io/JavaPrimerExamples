@@ -90,7 +90,7 @@ public class Primer {
 
             // combined
             String myFinalForm = myList.stream()
-                    .filter(i -> i >= 100)
+                    .filter(i -> i >= 5)
                     .sorted(Integer::compareTo)
                     .map(String::valueOf)
                     .findFirst()
