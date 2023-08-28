@@ -82,6 +82,22 @@ public class Primer {
                     .collect(Collectors.toList());
             System.out.println("My new list of strings " + myStrList);
 
+            // flatMap
+            List<List<Integer>> myListOfList = List.of(myList, myList);
+            System.out.println("My list of list: " + myListOfList);
+
+            myList = myListOfList.stream()
+                    .flatMap(Collection::stream)
+                    .collect(Collectors.toList());
+            System.out.println("My list from list of list: " + myList);
+            
+            myList = myListOfList.stream()
+                    .flatMap(list -> list.stream()
+                            .map(i -> i + 1))
+                    .collect(Collectors.toList());
+            System.out.println("My list from list of list (add 1): " + myList);
+
+
             // findFirst
             int firstOfStream = myList.stream()
                     .findFirst()
